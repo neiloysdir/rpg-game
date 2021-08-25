@@ -1,6 +1,28 @@
 #include "raylib.h"
 #include "raymath.h"
 
+class Character
+{
+    public:
+        Vector2 getWorldPos() { return worldPos; }
+    private:
+        Texture2D texture;
+        Texture2D idle;
+        Texture2D run;
+
+        Vector2 screenPos;
+        Vector2 worldPos;
+
+        //setting linear direction variable
+        float rightLeft{1.0f}; //1 means facing right -1 means facing left
+
+        //animation variables
+        float runningTime{};
+        int frame{};
+        const int maxFrame{6};
+        const float updateTime{1.0f/12.0f};
+};
+
 int main()
 {
     //initiating window

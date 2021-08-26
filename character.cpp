@@ -19,6 +19,8 @@ void Character::setScreenPos(int winWidth, int winHeight)
 
 void Character::tick(float deltaTime)
 {
+    worldPosLastFrame = worldPos;
+
     //set player direction
     Vector2 direction{0.0, 0.0}; //set within main game loop because we need direction to become 0 each frame
     if (IsKeyDown(KEY_A))
@@ -55,4 +57,9 @@ void Character::tick(float deltaTime)
     Rectangle source{frame * width, 0.0f, rightLeft * width, height}; //rectangle source is sprite sheet source where we are using first sprite
     Rectangle dest{screenPos.x, screenPos.y, 4.0f * width, 4.0f * height};   //character location on screen
     DrawTexturePro(texture, source, dest, Vector2{}, 0.0f, WHITE);
+}
+
+void Character::undoMovement()
+{
+    worldPos = worldPosLastFrame;
 }

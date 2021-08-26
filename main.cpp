@@ -12,6 +12,7 @@ int main()
     Texture2D worldMap = LoadTexture("nature_tileset/OpenWorldMap24x24.png");
     // Rectangle worldMapRec{0.0, 0.0, worldMap.width, worldMap.height};
     Vector2 worldMapPos{0.0, 0.0};
+    const float mapScale{4.0f};
 
     //making a character object
     Character knight;
@@ -35,6 +36,14 @@ int main()
 
         //calling the character movement and animation logic
         knight.tick(GetFrameTime());
+
+        if(knight.getWorldPos().x < 0.0f ||
+           knight.getWorldPos().y < 0.0f ||
+           knight.getWorldPos().x + winWidth > worldMap.width * mapScale ||
+           knight.getWorldPos().y + winHeight > worldMap.height * mapScale)
+        {
+            knight.undoMovement();
+        }
 
         //end drawing the window
         EndDrawing();

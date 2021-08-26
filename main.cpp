@@ -13,6 +13,7 @@ int main()
     // Rectangle worldMapRec{0.0, 0.0, worldMap.width, worldMap.height};
     Vector2 worldMapPos{0.0, 0.0};
 
+    //making a character object
     Character knight;
     knight.setScreenPos(winWidth, winHeight);
 
@@ -32,6 +33,7 @@ int main()
         //drawing worldmap on window after all operations done on it
         DrawTextureEx(worldMap, worldMapPos, 0.0, 4.0, WHITE);
 
+        //calling the character movement and animation logic
         knight.tick(GetFrameTime());
 
         //end drawing the window

@@ -1,6 +1,6 @@
 #include "raylib.h"
 #include "raymath.h"
-#include "includes/character.h"
+#include "character.h"
 
 int main()
 {

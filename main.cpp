@@ -1,11 +1,11 @@
 #include "raylib.h"
 #include "raymath.h"
-#include "character.h"
+#include "includes/character.h"
 
 int main()
 {
     //initiating window
-    const int winWidth{500}, winHeight{500};
+    const int winWidth{384}, winHeight{384};
     InitWindow(winWidth, winHeight, "rpg");
 
     // Loading worldmap
@@ -15,8 +15,7 @@ int main()
     const float mapScale{4.0f};
 
     //making a character object
-    Character knight;
-    knight.setScreenPos(winWidth, winHeight);
+    Character knight{winWidth, winHeight};
 
     //setting target fps(frames per second)
     SetTargetFPS(60);

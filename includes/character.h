@@ -3,11 +3,10 @@
 class Character
 {
 public:
-    Character();
+    Character(int winWidth, int winHeight);
     Vector2 getWorldPos() { return worldPos; }
-    void setScreenPos(int winWidth, int winHeight);
     void tick(float deltaTime);
-    void undoMovement();
+    void undoMovement(); 
 
 private:
     Texture2D texture{LoadTexture("characters/knight_idle_spritesheet.png")};
@@ -29,4 +28,5 @@ private:
     float speed{4.0f};
     float width{};
     float height{};
+    float scale{4.0f};
 };

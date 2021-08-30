@@ -1,7 +1,7 @@
 #include "raylib.h"
 #include "raymath.h"
-#include "includes/character.h"
-#include "includes/prop.h"
+#include "character.h"
+#include "prop.h"
 
 int main()
 {
@@ -18,6 +18,9 @@ int main()
     //making a character object
     Character knight{winWidth, winHeight};
 
+    //making a prop rock object
+    prop rock{Vector2{0.0f, 0.0f}, LoadTexture("nature_tileset/Rock.png")};
+
     //setting target fps(frames per second)
     SetTargetFPS(60);
     //main game logic
@@ -33,6 +36,8 @@ int main()
 
         //drawing worldmap on window after all operations done on it
         DrawTextureEx(worldMap, worldMapPos, 0.0, 4.0, WHITE);
+
+        rock.Render(knight.getWorldPos());
 
         //calling the character movement and animation logic
         knight.tick(GetFrameTime());

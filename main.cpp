@@ -18,8 +18,11 @@ int main()
     //making a character object
     Character knight{winWidth, winHeight};
 
-    //making a prop rock object
-    prop rock{Vector2{0.0f, 0.0f}, LoadTexture("nature_tileset/Rock.png")};
+    //making a prop object
+    prop props[2]{
+            prop{Vector2{600.0f, 300.0f}, LoadTexture("nature_tileset/Rock.png")},
+            prop{Vector2{400.0f, 500.0f}, LoadTexture("nature_tileset/Log.png")}
+        };
 
     //setting target fps(frames per second)
     SetTargetFPS(60);
@@ -37,17 +40,31 @@ int main()
         //drawing worldmap on window after all operations done on it
         DrawTextureEx(worldMap, worldMapPos, 0.0, 4.0, WHITE);
 
-        rock.Render(knight.getWorldPos());
+        //rendering props on screen
+        for (auto prop : props) //for each item in props
+        {
+            prop.Render(knight.getWorldPos());
+        }
 
         //calling the character movement and animation logic
         knight.tick(GetFrameTime());
 
+        //defining movement border
         if(knight.getWorldPos().x < 0.0f ||
            knight.getWorldPos().y < 0.0f ||
            knight.getWorldPos().x + winWidth > worldMap.width * mapScale ||
            knight.getWorldPos().y + winHeight > worldMap.height * mapScale)
         {
             knight.undoMovement();
+        }
+
+        //checks prop collision
+        for (auto prop : props)
+        {
+            if (CheckCollisionRecs(prop.getCollisionRec(knight.getWorldPos()), knight.getCollisionRec()))
+            {
+                knight.undoMovement();
+            }
         }
 
         //end drawing the window

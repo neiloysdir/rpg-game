@@ -3,6 +3,7 @@
 #include "character.h"
 #include "prop.h"
 #include "enemy.h"
+#include "baseCharacter.h"
 
 int main()
 {
